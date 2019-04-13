@@ -21,3 +21,29 @@
 (println "My full name is " my-full-name)
 
 
+;; Clojure Control Flow
+;; ===================================================================
+
+;; (if boolean-form
+;; 	then-form
+;;		optional-else-form)
+
+;; Clojure functions always returns a value. the simplest value is nil which equvalent to null
+(if true
+	(println "TRUE")) ;; no else branch
+
+(if false
+	(println "TRUE")
+		(println "FALSE")) ;; "FALSE is else branch"
+
+
+(if true
+	"By Zeus's hammer!"
+	"By Aquaman's trident!")
+
+(if false
+	"By Zeus's hammer!"
+	"By Aquaman's trident!")
+	
+;;(use 'brave-clj.ch3 :reload-all)
+(println "Successfully re-loaded all the forms !!")
