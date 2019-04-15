@@ -107,5 +107,18 @@
  ; Here the nil is return that is the first falsey value encounted. so no need to evaluate any further.
 
 
+;; Binding value with def keyword. In other word declaring like variable with default values
+(def failed-protagonist-names
+	["Larry Potter" "Doreen the Explorer" "The Incredible Bulk"])
+
+
+(defn error-message
+	[severity]
+		(str "OH GOD! IT'S A DISASTER! WE'RE "
+			(if (= severity :mild)
+				"MILDLY INCONVENIENCED!"
+				"DOOOOOOOMED!")))
+
+
 ;;(use 'brave-clj.ch3 :reload-all)
 (println "Successfully re-loaded all the forms !!")
