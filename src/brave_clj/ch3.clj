@@ -120,5 +120,178 @@
 				"DOOOOOOOMED!")))
 
 
+;; Data Structure
+;; ===============================
+
+;; Numbres
+
+; 93  Long
+(type 93)
+;=> clojure.lang.Long
+; 1.2 Double
+(type 1.2)
+;=> clojure.lang.Double
+; 1/5 Ratio
+(type 1/5)
+;=> clojure.lang.Ratio
+
+(def b-name 
+	(str "Binay" " " "Mishra"))
+
+
+;; Maps
+
+{} ; empty map litrarls
+
+{:first-name "Binay" 
+ :last-name "Mishra"}
+
+ (def plus-var 
+ 	{"plus-str" +})
+ ;; this will create a map with key "plus-str" and value is finction / operator +
+ ;; plus-var becomes map var
+ (plus-var "plus-str")
+ ; #object[clojure.core$_PLUS_ 0x6158e336 "clojure.core$_PLUS_@6158e336"]
+ (type 
+ 	(plus-var "plus-str"))
+;=> clojure.core$_PLUS_
+
+;; Maps can be nested too
+
+{:full-name {:first-name "Binay" :last-name "Mishra"}}
+
+;; Map function
+
+(hash-map :a 1 :b 2)
+;=> (hash-map :a 1 :b 2)
+
+(hash-map :a 0 :b {:c "Hey! there"})
+;=>{:b {:c "Hey! there"}, :a 0}
+
+({:b {:c "Hey! there"}, :a 0} :b)
+;=> {:c "Hey! there"}
+
+(get {:a 0 :b 1} :c)
+;=> nil
+;; not value corrosponding to :d
+
+(get {:a 0 :b 1} :c "unicorns?")
+;=> "unicorns?"
+;; Default value
+
+
+(get-in {:a 0 :b {:c "Hey! there"}} [:b :c])
+;=> "Hey! there"
+;; Order of the key matters in the vactor
+(get-in {:a 0 :b {:c "Hey! there"}} [:c :b])
+;=> nil
+;; first , ({:a 0 :b {:c "Hey! there"}} :c) evaluated to nil
+
+;; A map itself can become a function, same as a Keyword itself can become function
+({:first-name "Binay" :last-name "Mishra"}  
+	:first-name)
+;=> "Binay"
+
+(:first-name 
+	{:first-name "Binay" :last-name "Mishra"})
+;=> "Binay"
+
+(get {:a 1 :b 2 :c 3} :a)
+;=> 1
+;; (get ) function is also used to get value from the map
+
+;; Keywords
+;; ============
+;; Keywords are evaluated to itself. mostly used as key in the map, it brhaves like function too
+:a
+;=> :a
+:rumplestiltsken
+;=> :rumplestiltsken
+:34
+;=> :34
+:_?
+;=> _?
+
+;; Vectors
+;;=============
+
+;; Basically Vectors are like array and can be heterogeneous
+
+[1 2 3 4 5]
+
+(get [1 2 3] 1)
+;=> 2
+
+[{:first-name "Binay"} "is" 34 "years" "old"]
+(get [{:first-name "Binay"} "is" 34 "years" "old"] 0)
+;=> {:first-name "Binay"}
+
+;; Also have function. Not only Literal
+
+(vector {:first-name "Binay"} "is" 34 "years" "old")
+;=> [{:first-name "Binay"} "is" 34 "years" "old"]
+
+;; Conjoin is to add more element into a vector
+(conj [] 1 2 3)
+;=> [1 2 3] its adds at the end of the vector, just like array.
+
+(type (conj [] 1 2 3))
+;=> clojure.lang.PersistentVector
+;; It means every conjoin a new immutable copy of vector will be ctrated lazily. But is memort efficient not entire vector will be cteared.
+
+(conj (vector 1 2) 3)
+;=> [1 2 3]  same thing as above
+
+
+
+;; Lists / Lazy Sequences
+;; ====================
+
+'() ;; Empty
+;; the syntax starts with single ' (quote) because, the Paranthias should not be evaluated 
+;; the clojue syntex is to evaluate forms between Paranthias.
+
+(type '(1))
+;=> clojure.lang.PersistentList
+
+'(1 2 3)
+;=> (1 2 3)
+(list 1 2 3)
+;=> (1 2 3)
+
+(list 1 "two" {3 4})
+;=> (1 "two" {3 4})
+
+(conj '(1 2 3) 4)
+;=> (4 1 2 3)
+;; this add element at the begining of the list
+
+
+;; Sets
+;; ================
+;; Holds only unique values
+#{1 2 3 "set" :set}
+(type #{1 2 3 "set" :set})
+;:=> clojure.lang.PersistentHashSet
+
+(hash-set 1 1 2 2)
+;=> #{1 2}
+
+(conj #{:a :b} :b)
+;=> #{:a :b}
+
+(contains? #{:a :b} :a)
+;=> true
+
+(contains? #{:a :b} 3)
+;=> false
+
+(get #{:a :b} :a)
+;=> :a
+
+
+(get #{:a :b} "Binay")
+;=> nil
+
 ;;(use 'brave-clj.ch3 :reload-all)
 (println "Successfully re-loaded all the forms !!")
